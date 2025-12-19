@@ -78,6 +78,8 @@ unzip -o "${ZIPFILE}" -x 'src/*' -d ${MODPATH} >&2
 if [ -f "${data_dir}/config.yaml" ];then
     ui_print "- config.yaml 文件已存在 跳过覆盖."
     rm -rf ${MODPATH}/src/config.example.yaml
+else
+    mv -f ${MODPATH}/src/config.example.yaml ${MODPATH}/src/config.yaml
 fi
 
 
@@ -95,13 +97,13 @@ if [ -f "${clash_data_dir}/clash.config" ];then
         rm -rf ${MODPATH}/src/clash.config
     else
         sed -i "s/global/${mode}/g" ${MODPATH}/src/clash.config
-        cp -Rvf ${data_dir}/clash.config ${data_dir}/clash.config.old
+        cp -Rf ${data_dir}/clash.config ${data_dir}/clash.config.old
     fi
 fi
 
 pm install -r ${MODPATH}/apk/DashBoard.apk
 
-cp -Rvf ${MODPATH}/src/* ${data_dir}/
+cp -Rf ${MODPATH}/src/* ${data_dir}/
 rm -rf ${MODPATH}/src
 rm -rf ${MODPATH}/apk
 rm -rf ${MODPATH}/bin
