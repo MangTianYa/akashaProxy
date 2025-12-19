@@ -219,11 +219,6 @@ find_packages_uid() {
         fi
 
         echo "${hd}${uid}" >> ${appuid_file}.tmp
-        if [ "${mode}" = "blacklist" ]; then
-            log "info: ${hd}${package}已过滤."
-        elif [ "${mode}" = "whitelist" ]; then
-            log "info: ${hd}${package}已代理."
-        fi
     done
     for uid in $(cat ${appuid_file}.tmp | sort -u); do
         echo ${uid} >> ${appuid_file}

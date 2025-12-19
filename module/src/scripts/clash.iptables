@@ -1,36 +1,5 @@
 [ -z "$version" ] && . /data/clash/clash.config
 
-get_ap_interfaces() {
-    ifaces=""
-    if command -v dumpsys >/dev/null 2>&1; then
-        iface=$(iw dev 2>/dev/null | awk '/Interface/ {name=$2} /type AP/ {print name}')
-    fi
-    if command -v dumpsys >/dev/null 2>&1; then
-        ifaces=$(dumpsys tethering 2>/dev/null | awk -F'[][]' '/Tethered|tethered interfaces/{print $2}')
-        if [ -n "$ifaces" ]; then
-            echo "$ifaces" | tr ' ' '\n' | sed '/^$/d'
-            return 0
-        fi
-        
-        ifaces=$(dumpsys connectivity 2>/dev/null | awk -F'[][]' '/Tethering|Tethered/{print $2}')
-        if [ -n "$ifaces" ]; then
-            echo "$ifaces" | tr ' ' '\n' | sed '/^$/d'
-            return 0
-        fi
-    fi
-    for i in ap0 softap0 wlan1 wlan2; do
-        if ifconfig | grep -q "^$i"; then
-            echo "$i"
-            return 0
-        fi
-    done
-    for i in $(ifconfig | grep -oE '^wlan[0-9]+'); do
-        [ "$i" = "wlan0" ] && continue
-        echo "$i"
-        return 0
-    done
-}
-
 start_iptables() {
     if [ "${mode}" = "socks" ] && [ "${tun_status}" = "true" ];then
         log "warn: 当socks模式下不可开启Tun."
