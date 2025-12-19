@@ -12,12 +12,18 @@ check-deps:
 	@command -v go >/dev/null 2>&1 || { echo >&2 "[ERROR] go is not installed. Please install go."; exit 1; }
 	@command -v upx >/dev/null 2>&1 || { echo >&2 "[ERROR] upx is not installed. Please install upx."; exit 1; }
 
-download: download-mihomo download-dashboard
+download: download-mihomo download-dashboard download-geodata
 
 pack: build-tools build-webui build-ruleconverter
 	echo "id=akashaProxy\nname=akashaProxy\nversion="$(shell git rev-parse --short HEAD)"\nversionCode="$(shell git log -1 --format=%ct)"\nauthor=akashaProxy developer\ndescription=akasha terminal transparent proxy module that supports tproxy and tun and adds many easy-to-use features. Compatible with Magisk/KernelSU">module/module.prop
 	cd module && zip -r ../$(NAME).zip *
 	@echo "module pack successfully"
+
+download-geodata:
+	curl --connect-timeout 5 --progress-bar -L -o module/src/GeoSite.dat \
+	"https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat"
+	curl --connect-timeout 5 --progress-bar -L -o module/src/GeoIP.dat \
+	"https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat"
 
 download-mihomo:
 	@[ ! -f module/bin ] && mkdir -p module/bin

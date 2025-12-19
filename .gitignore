@@ -3,6 +3,8 @@ module/module.prop
 module/bin/*
 module/src/zashboard
 module/webroot
+module/src/Geoip.dat
+module/src/Geosite.dat
 node_modules
 module/src/bin/yamlcli
 module/.update
