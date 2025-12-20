@@ -98,14 +98,11 @@ start_module() {
     for file in ${data_dir}/plugins/*/start.sh; do
 
         [ -x "$file" ] || continue
-
-        module_name=$(printf '%s\n' "$file" | sed "s#${data_dir}/plugins/##"| sed 's#/start\.sh##')
         
         (
             cd "$(dirname "$file")"
             source "$file"
         )&
-        log "info: ${module_name} 模块已加载."
     done
 }
 
