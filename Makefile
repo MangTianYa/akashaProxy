@@ -55,8 +55,8 @@ build-tools:
 	@echo "yamlcli build successfully"
 
 build-ruleconverter:
-	cd modules/ruleconverter && go mod tidy
-	cd modules/ruleconverter && CGO_ENABLED=0 GOOS=android GOARCH=arm64 go build -trimpath -ldflags="-s -w" -buildvcs=false -o ../../module/src/module/ruleconverter/bin/ruleconverter
+	cd plugins/ruleconverter && go mod tidy
+	cd plugins/ruleconverter && CGO_ENABLED=0 GOOS=android GOARCH=arm64 go build -trimpath -ldflags="-s -w" -buildvcs=false -o ../../module/src/module/ruleconverter/bin/ruleconverter
 	upx module/src/module/ruleconverter/bin/ruleconverter
 	@echo "ruleconverter build successfully"
 

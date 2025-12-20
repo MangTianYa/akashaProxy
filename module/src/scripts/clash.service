@@ -77,34 +77,43 @@ edit_tun() {
 }
 
 boot_module() {
-    for file in ${data_dir}/module/*/post-fs-data.sh; do
+    if [ ${plugins} != "true" ] ; then
+        return
+    fi
+    for file in ${data_dir}/plugins/*/post-fs-data.sh; do
 
         [ -x "$file" ] || continue
         
         (
             cd "$(dirname "$file")"
-            busybox sh "$file"
+            source "$file"
         )
     done
 }
 
 start_module() {
-    for file in ${data_dir}/module/*/start.sh; do
+    if [ ${plugins} != "true" ] ; then
+        return
+    fi
+    for file in ${data_dir}/plugins/*/start.sh; do
 
         [ -x "$file" ] || continue
 
-        module_name=$(printf '%s\n' "$file" | sed "s#${data_dir}/module/##"| sed 's#/start\.sh##')
+        module_name=$(printf '%s\n' "$file" | sed "s#${data_dir}/plugins/##"| sed 's#/start\.sh##')
         
         (
             cd "$(dirname "$file")"
-            busybox sh "$file"
+            source "$file"
         )&
-        log "info: ${module_name} 模块已启动."
+        log "info: ${module_name} 模块已加载."
     done
 }
 
 stop_module() {
-    for file in ${data_dir}/module/*/stop.sh; do
+    if [ ${plugins} != "true" ] ; then
+        return
+    fi
+    for file in ${data_dir}/plugins/*/stop.sh; do
 
         [ -x "$file" ] || continue
         

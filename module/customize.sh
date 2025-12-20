@@ -34,7 +34,7 @@ data_dir="/data/clash"
 [ -d ${data_dir}/run ] || mkdir -p ${data_dir}/run
 [ -d ${data_dir}/kernel ] || mkdir -p ${data_dir}/kernel
 [ -d ${data_dir}/clashkernel ] && rm -rf ${data_dir}/clashkernel
-
+[ -d ${data_dir}/module ] && rm -rf ${data_dir}/module
 
 if [ -f ${data_dir}/kernel/mihomo ];then
     ui_print "- 模块已安装,跳过内核安装"

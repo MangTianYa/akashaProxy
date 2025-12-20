@@ -3,9 +3,9 @@ module/module.prop
 module/bin/*
 module/src/zashboard
 module/webroot
-module/src/Geoip.dat
-module/src/Geosite.dat
+module/src/GeoIP.dat
+module/src/GeoSite.dat
 node_modules
 module/src/bin/yamlcli
 module/.update
-module/src/module/ruleconverter/bin/ruleconverter
+module/src/plugins/ruleconverter/bin/ruleconverter
