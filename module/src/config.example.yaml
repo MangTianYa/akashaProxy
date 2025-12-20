@@ -172,10 +172,10 @@ proxy-providers:
 
 # 代理组
 proxy-groups:
-  - name: proxy
+  - name: 代理设置
     type: select
     proxies:
-      - 直连
+      - 国内分流
       - 香港
       - 台湾
       - 日本
@@ -183,7 +183,7 @@ proxy-groups:
       - 美国
       - 全部节点
 
-  - name: 直连
+  - name: 国内分流
     type: select
     proxies:
       - DIRECT
@@ -241,10 +241,10 @@ rule-providers:
 # 分流规则
 rules:
 
-  - AND,((NOT,((OR,((PROCESS-NAME,mihomo),(PROCESS-NAME,ClashMeta))))),(DST-PORT,853)),REJECT #禁止非mihomo访问dot dns
-  - GEOSITE,category-httpdns-cn,REJECT-DROP #屏蔽httpdns防止去广告失效
-  - RULE-SET,秋风广告规则,REJECT-DROP #去广告
-  - IP-CIDR,203.107.1.0/24,REJECT,no-resolve # 阿里云ip httpdns
+  - AND,((NOT,((OR,((PROCESS-NAME,mihomo),(PROCESS-NAME,ClashMeta))))),(DST-PORT,853)),屏蔽 #禁止非mihomo访问dot dns
+  - GEOSITE,category-httpdns-cn,屏蔽 #屏蔽httpdns防止去广告失效
+  - RULE-SET,AWAvenue,屏蔽 #去广告
+  - IP-CIDR,203.107.1.0/24,屏蔽,no-resolve # 阿里云ip httpdns
 
   - GEOSITE,private,国内分流
   - GEOSITE,connectivity-check,国内分流
