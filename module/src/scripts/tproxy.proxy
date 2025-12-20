@@ -114,7 +114,6 @@ set_tproxy() {
             if [ -n "${appuid}" ]; then
                 iptables_wait -t mangle -A KERNEL_OUT -p tcp -m owner --uid-owner ${appuid} -j RETURN
                 iptables_wait -t mangle -A KERNEL_OUT -p udp -m owner --uid-owner ${appuid} -j RETURN
-                log "info: 绕过 ${appuid}"
             fi
         done
 
@@ -127,7 +126,6 @@ set_tproxy() {
             if [ -n "${appuid}" ]; then
                 iptables_wait -t mangle -A KERNEL_OUT -p tcp -m owner --uid-owner ${appuid} -j MARK --set-xmark ${mark_id}
                 iptables_wait -t mangle -A KERNEL_OUT -p udp -m owner --uid-owner ${appuid} -j MARK --set-xmark ${mark_id}
-                log "info: 代理 ${appuid}"
             fi
         done
 

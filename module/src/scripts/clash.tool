@@ -182,7 +182,6 @@ update_file() {
 
 find_packages_uid() {
     rm -f ${appuid_file}
-    rm -f ${appuid_file}.tmp
     hd=""
     if [ "${mode}" = "global" ]; then
         mode=blacklist
@@ -208,7 +207,7 @@ find_packages_uid() {
         fi
 
         uid=$(awk '$1~/'^"${package}"$'/{print $2}' ${system_packages_file})
-    if [ -z "${uid}" ]; then
+        if [ -z "${uid}" ]; then
             uids=$(dumpsys package ${package} | grep appId= | awk -F= '{print $2}')
             if [ -z "${uids}" ]; then
                 log "warn: ${package}未找到."
@@ -217,13 +216,13 @@ find_packages_uid() {
                 uid=uids
             fi
         fi
-
-        echo "${hd}${uid}" >> ${appuid_file}.tmp
+        if [ "${mode}" = "blacklist" ]; then
+            log "info: 排除 ${package}"
+        else
+            log "info: 代理 ${package}"
+        fi
+        echo "${hd}${uid}" >> ${appuid_file}
     done
-    for uid in $(cat ${appuid_file}.tmp | sort -u); do
-        echo ${uid} >> ${appuid_file}
-    done
-    rm -f ${appuid_file}.tmp
 }
 
 port_detection() {

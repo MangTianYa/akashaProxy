@@ -60,7 +60,6 @@ set_redirect() {
         for appuid in ${apps} ; do
             if [ -n "${appuid}" ]; then
                 iptables_wait -t nat -A KERNEL_OUT -m owner --uid-owner ${appuid} -j RETURN
-                log "info: 绕过 ${appuid}"
             fi
         done
         iptables_wait -t nat -A KERNEL_OUT -p tcp -j REDIRECT --to-ports ${redirect_port}
@@ -70,7 +69,6 @@ set_redirect() {
         for appuid in ${apps} ; do
             if [ -n "${appuid}" ]; then
                 iptables_wait -t nat -A KERNEL_OUT -p tcp -m owner --uid-owner ${appuid} -j REDIRECT --to-ports ${redirect_port}
-                log "info: 代理 ${appuid}"
             fi
         done
 
