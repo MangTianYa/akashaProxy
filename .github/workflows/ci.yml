@@ -101,6 +101,7 @@ jobs:
         git push -f origin ci
 
     - name: Upload release
+      if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'  
       uses: softprops/action-gh-release@v1
       with:
           tag_name: ci
