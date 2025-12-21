@@ -105,8 +105,8 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
           tag_name: ci
+          name: latest CI build - ${{ env.buildSha }}
           body: |
-            ## 🚀 CI Build
             **Commit Message:**
             ```
             ${{ github.event.head_commit.message }}
@@ -115,6 +115,5 @@ jobs:
             **Commit:** ${{ github.sha }}
             [View Action Run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})
           files: akashaProxy.zip
-          prerelease: true
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
