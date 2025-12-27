@@ -15,7 +15,9 @@ if [ ! -d ${MODDIR}/config/run ]; then
 fi
 crond -c ${MODDIR}/config/run
 
-
+if [ "${compatible_dashboard}" = "true" ] ; then
+    ln -s /data/adb/modules/akashaProxy/config /data/clash
+fi
 
 if [ "${self_start}" = "true" ] ; then
     nohup ${MODDIR}/config/scripts/clash.service -s && ${MODDIR}/config/scripts/clash.iptables -s & > ${MODDIR}/config/run/run.logs 2>&1 &
