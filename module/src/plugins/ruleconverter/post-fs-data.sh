@@ -1,4 +1,4 @@
-[ -z "$version" ] && . /data/clash/clash.config
+[ -z "$version" ] && . /data/adb/modules/akashaProxy/config/clash.config
 
 pid=$(lsof | grep :${ruleconverter_port})
 

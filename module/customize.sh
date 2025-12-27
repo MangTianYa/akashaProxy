@@ -29,7 +29,7 @@ fi
 
 system_gid="1000"
 system_uid="1000"
-data_dir="/data/clash"
+data_dir="/data/adb/modules/akashaProxy/config"
 
 [ -d ${data_dir}/run ] || mkdir -p ${data_dir}/run
 [ -d ${data_dir}/kernel ] || mkdir -p ${data_dir}/kernel
@@ -88,10 +88,12 @@ if [ -f "${data_dir}/packages.list" ];then
         rm -rf ${MODPATH}/src/packages.list
 fi
 
-if [ -f "${clash_data_dir}/clash.config" ];then
-    mode=$(grep -i "^mode" ${clash_data_dir}/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
-    oldVersion=$(grep -i "version" ${clash_data_dir}/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
-    newVersion=$(grep -i "version" ${MODPATH}/clash/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
+if [ -f "${data_dir}/clash.config" ];then
+    mode=$(grep -i "^mode" ${data_dir}/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
+
+    oldVersion=$(grep -i "version" ${data_dir}/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
+    newVersion=$(grep -i "version" ${MODPATH}/src/clash.config | awk -F '=' '{print $2}' | sed "s/\"//g")
+
     if [ "${oldVersion}" -ge "${newVersion}" ] && [ ! "${oldVersion}" = "" ];then
         ui_print "- clash.config 文件已存在 跳过覆盖."
         rm -rf ${MODPATH}/src/clash.config
@@ -101,11 +103,10 @@ if [ -f "${clash_data_dir}/clash.config" ];then
     fi
 fi
 
-pm install -r ${MODPATH}/apk/DashBoard.apk
+cp -Rf ${MODPATH}/webroot/* /data/adb/modules/akashaProxy/webroot/ #立即刷新webui
 
 cp -Rf ${MODPATH}/src/* ${data_dir}/
 rm -rf ${MODPATH}/src
-rm -rf ${MODPATH}/apk
 rm -rf ${MODPATH}/bin
 rm -rf ${MODPATH}/kernel
 
@@ -133,7 +134,6 @@ ui_print "
 
 如何使用本模块清查阅→https://github.com/akashaProxy/akashaProxy
 如何使用mihomo以及配置文件文档清查阅→https://wiki.metacubex.one/config
-预设配置文件在 /data/clash/config.example.yaml
 请重命名为 config.yaml 后使用DashBoard启动/停止 或者使用tools文件夹下的start.sh/stop.sh
 ************************************************
 Telegram Channel: https://t.me/akashaProxyci

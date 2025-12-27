@@ -1,1 +1,1 @@
-/data/clash/tools/action.sh
+/data/adb/modules/akashaProxy/config/tools/action.sh

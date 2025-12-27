@@ -62,7 +62,7 @@ ntp:
 external-controller: 127.0.0.1:9090
 # external-ui: yacd
 external-ui: zashboard #使用zashboard为本地管理ui
-external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
+external-ui-url: "https://ghfast.top/https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
 bind-address: "*"
 
 # tun虚拟网卡设置 不懂默认就好 默认开启tun
@@ -94,14 +94,9 @@ dns:
   cache-algorithm: arc # DNS 缓存算法
   ipv6: false # 启用 IPv6 解析
   respect-rules: true # 遵循分流规则
-  enhanced-mode: fake-ip
+  enhanced-mode: redir-host
   fake-ip-filter-mode: blacklist
   fake-ip-range: 198.18.0.1/16
-  fake-ip-filter:
-    - '*.lan'
-    - geosite:connectivity-check
-    - geosite:private
-    - geosite:cn
   default-nameserver:
     - https://1.12.12.21/dns-query
     - https://223.5.5.5/dns-query

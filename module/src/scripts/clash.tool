@@ -1,4 +1,4 @@
-[ -z "$version" ] && . /data/clash/clash.config
+[ -z "$version" ] && . /data/adb/modules/akashaProxy/config/clash.config
 
 monitor_local_ipv4() {
 

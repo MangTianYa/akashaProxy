@@ -27,7 +27,7 @@ The name is modified from the void terminal of [clashMeta document](https://wiki
 
 ## Configuration:
 
-**Working path:/data/clash/**
+**Working path:/data/adb/modules/akashaProxy/config/**
 
 `clash.config` : module startup configuration
 
@@ -47,12 +47,12 @@ https://clash-meta.wiki
 
 start:
 ````
-/data/clash/scripts/clash.service -s && /data/clash/scripts/clash.iptables -s
+/data/adb/modules/akashaProxy/config/scripts/clash.service -s && /data/adb/modules/akashaProxy/config/scripts/clash.iptables -s
 ````
 
 stop:
 ````
-/data/clash/scripts/clash.service -k && /data/clash/scripts/clash.iptables -k
+/data/adb/modules/akashaProxy/config/scripts/clash.service -k && /data/adb/modules/akashaProxy/config/scripts/clash.iptables -k
 ````
 
 You can also use [dashboard](https://t.me/MagiskChangeKing) to manage startup and shutdown or KernelSU webUI control

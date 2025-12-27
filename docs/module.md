@@ -1,11 +1,11 @@
 
 ## Module System
 
-akashaProxy provides a module system that allows users to extend functionality through scripts. Modules are located in the `module` folder under the runtime directory (typically `/data/clash/module/`)
+akashaProxy provides a module system that allows users to extend functionality through scripts. Modules are located in the `plugins` folder under the runtime directory (typically `/data/adb/modules/akashaProxy/config/plugins/`)
 
 ### Directory Structure
 
-Each module is a subfolder within the `module` directory. The directory name of the module serves as its identifier.
+Each module is a subfolder within the `plugins` directory. The directory name of the module serves as its identifier.
 
 A typical module consists of the following files:
 

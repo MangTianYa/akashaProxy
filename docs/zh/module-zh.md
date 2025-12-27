@@ -1,10 +1,10 @@
 ## 模块系统
 
-akashaProxy 提供了一个模块系统，允许用户通过脚本扩展功能。模块位于运行目录下的 `module` 文件夹中（通常为 `/data/clash/module/`）
+akashaProxy 提供了一个模块系统，允许用户通过脚本扩展功能。模块位于运行目录下的 `plugins` 文件夹中（通常为 `/data/adb/modules/akashaProxy/config/plugins/`）
 
 ### 目录结构
 
-每个模块都是 `module` 目录下的一个子文件夹。模块的目录名即为模块的标识符。
+每个模块都是 `plugins` 目录下的一个子文件夹。模块的目录名即为模块的标识符。
 
 一个典型的模块包含以下文件：
 

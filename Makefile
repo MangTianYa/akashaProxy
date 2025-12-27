@@ -34,12 +34,12 @@ download-mihomo:
 
 download-dashboard:
 	@[ ! -f module/src/bin ] && mkdir -p module/src/zashboard
-	curl --connect-timeout 5 --progress-bar -L -o module/src/zashboard/dist-cdn-fonts.zip \
-	"https://github.com/Zephyruso/zashboard/releases/latest/download/dist-cdn-fonts.zip"
-	unzip -o module/src/zashboard/dist-cdn-fonts.zip -d module/src/zashboard/
+	curl --connect-timeout 5 --progress-bar -L -o module/src/zashboard/dist-no-fonts.zip \
+	"https://github.com/Zephyruso/zashboard/releases/latest/download/dist-no-fonts.zip"
+	unzip -o module/src/zashboard/dist-no-fonts.zip -d module/src/zashboard/
 	mv -f module/src/zashboard/dist/* module/src/zashboard/
 	rm -rf module/src/zashboard/dist
-	rm -rf module/src/zashboard/dist-cdn-fonts.zip
+	rm -rf module/src/zashboard/dist-no-fonts.zip
 	@echo "dashboard download successfully"
 
 build-webui:
