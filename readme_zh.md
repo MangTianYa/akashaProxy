@@ -27,7 +27,7 @@ akashaProxy 是 ~~mihomo~~clashMeta 衍生的Magisk/KernelSU模块
 
 ## 配置：
 
-**工作路径：/data/adb/modules/akashaProxy/config/**
+**工作路径：/data/adb/akashaProxy/**
 
 `clash.config` : 模块启动配置
 
@@ -47,12 +47,12 @@ https://clash-meta.wiki
 
 开始：
 ````
-/data/adb/modules/akashaProxy/config/scripts/clash.service -s && /data/adb/modules/akashaProxy/config/scripts/clash.iptables -s
+/data/adb/akashaProxy/scripts/clash.service -s && /data/adb/akashaProxy/scripts/clash.iptables -s
 ````
 
 停止：
 ````
-/data/adb/modules/akashaProxy/config/scripts/clash.service -k && /data/adb/modules/akashaProxy/config/scripts/clash.iptables -k
+/data/adb/akashaProxy/scripts/clash.service -k && /data/adb/akashaProxy/scripts/clash.iptables -k
 ````
 
 您还可以使用[dashboard](https://t.me/MagiskChangeKing)管理启停或者使用KernelSU webUI

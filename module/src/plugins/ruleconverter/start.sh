@@ -1,5 +1,5 @@
-MODDIR=/data/adb/modules/akashaProxy
-[ -z "$version" ] && . ${MODDIR}/config/clash.config
+MODDIR=/data/adb/akashaProxy
+[ -z "$version" ] && . ${MODDIR}/clash.config
 
 if [ "$ruleconverter" != "true" ]; then
     exit 0

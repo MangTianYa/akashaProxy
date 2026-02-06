@@ -1,2 +1,2 @@
-MODDIR=/data/adb/modules/akashaProxy
-${MODDIR}/config/scripts/clash.service -s && ${MODDIR}/config/scripts/clash.iptables -s
+MODDIR=/data/adb/akashaProxy
+${MODDIR}/scripts/clash.service -s && ${MODDIR}/scripts/clash.iptables -s
