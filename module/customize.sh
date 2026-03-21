@@ -11,10 +11,10 @@ data_dir="/data/adb/akashaProxy"
 [ -d "${data_dir}/clashkernel" ] && rm -rf "${data_dir}/clashkernel"
 [ -d "${data_dir}/module" ] && rm -rf "${data_dir}/module"
 
-unzip -o "${ZIPFILE}" 'bin/*' -d $TMPDIR
-unzip -o "${ZIPFILE}" 'src/*' -d $TMPDIR
+unzip -o "${ZIPFILE}" 'bin/*' -d "${TMPDIR}"
+unzip -o "${ZIPFILE}" 'src/*' -d "${TMPDIR}"
 
-unzip -o "${ZIPFILE}" -x 'META-INF/*' -d $MODPATH
+unzip -o "${ZIPFILE}" -x 'META-INF/*' -d "${MODPATH}"
 
 
 if [ -f "${data_dir}/kernel/mihomo" ]; then
@@ -33,7 +33,7 @@ else
         "x86_64")
             ABI="amd64"
             ;;
-        ?)
+        *)
             ABI="arm64-v8"
             ui_print "- 未知的架构: $(getprop ro.product.cpu.abi) 使用默认架构: arm64-v8"
             ;;
@@ -79,7 +79,7 @@ if [ -f "${data_dir}/clash.config" ]; then
 fi
 
 
-cp -Rf ${TMPDIR}/src/* "${data_dir}/"
+cp -Rf "${TMPDIR}"/src/* "${data_dir}/"
 
 ui_print "- 开始设置权限."
 set_perm_recursive "${MODPATH}" 0 0 0770 0770

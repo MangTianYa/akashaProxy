@@ -17,7 +17,7 @@ fi
 crond -c ${data_dir}/run
 
 if [ "${compatible_dashboard}" = "true" ] ; then
-    ln -s /data/adb/akashaProxy /data/clash
+    [ -L /data/clash ] || ln -s /data/adb/akashaProxy /data/clash
 fi
 
 if [ "${self_start}" = "true" ] ; then
