@@ -13,6 +13,7 @@ check-deps:
 	@command -v upx >/dev/null 2>&1 || { echo >&2 "[ERROR] upx is not installed. Please install upx."; exit 1; }
 
 init:
+	@git submodule update --init --recursive
 	@mkdir -p tmp
 	@cp -rf module/* tmp/
 	
